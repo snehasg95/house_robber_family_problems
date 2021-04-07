@@ -59,7 +59,30 @@ class Solution:
             dp[i][1] = dp[i-1][0] + houses[i]
             
             
-            
+  
+
+####
+Exactly representing above solution in O(1) space 
+class Solution:
+     def rob(self, nums: List[int]) -> int:
+         if not nums:
+             return 0
+         
+        # initialise choices (in dp solution this was 0 for dont choose and houses[0] for choose case)
+         skip = 0
+         take = nums[0]
+
+         # similar to above range from 1 onwards and for skip we consider max between skip and take 
+         # for take we add value current to skip so that is why we need a temp to store the previous skip in case it got overwritten.
+         for i in range(1,len(nums)):
+             temp = skip
+             skip = max(skip,take)
+             take = nums[i] + temp
+
+         return max(skip,take)
+
+######
+
  class Solution:
     def rob(self, houses: List[int]) -> int:
       
