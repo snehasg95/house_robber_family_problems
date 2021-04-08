@@ -32,54 +32,37 @@ class Solution:
         
         
         
-        
-        
-        
-        
-        
-# Attempt 1 d solution        
-#         if not houses:
-#             return 0
-        
-#         self.profits = []
-        
-        
-#         for i in range(0, len(houses) - 1):
-#             if len(houses) == 1:
-#                 return houses[0]
+ 
 
-
-
-#             profits = houses[0:len(houses) - 1]
-#             print(profits)
-#             profits[1] = max(profits[0], profits[1])
-
-#             for i in range(1, len(houses)):
-#                 profits[i] = max(profits[i-1], profits[i] + profits[i-2])
-
-
-#             self.profits.append(profits[-1])
+class Solution:
+    def rob(self, houses: List[int]) -> int:
+        
+        
+        if not houses:
+            return 0
+        
+        if len(houses) == 1:
+            return houses[0]
+        
+        
+        return max(self.helper(houses[1:]), self.helper(houses[:-1]))
+    
+    
+    
+    def helper(self, nums):
+        
+        prev = 0
+        current = 0
+        
+        for num in nums:
+            temp = prev
+            prev = current
+            current = max(current, num + prev)
             
-            
-            
-#         for i in range(2, len(houses)):
-            
-#             if len(houses) == 1:
-#                 return houses[0]
-
-
-
-#             profits = houses[2]
-#             profits[1] = max(profits[0], profits[1])
-
-#             for i in range(2, len(houses)):
-#                 profits[i] = max(profits[i-1], profits[i] + profits[i-2])
-
-
-#             self.profits.append(profits[-1])
-            
-            
-#         print(self.profits)   
-#         return max(self.profits)
-            
+        return current
+        
+        
+        
+        
+  
             
