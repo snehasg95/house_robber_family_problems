@@ -61,7 +61,7 @@ class Solution:
             
   
 
-####
+#### 2 space constant solutions ####
 Exactly representing above solution in O(1) space 
 class Solution:
      def rob(self, nums: List[int]) -> int:
@@ -81,7 +81,43 @@ class Solution:
 
          return max(skip,take)
 
-######
+  
+
+
+## More optimised
+
+# O(N) time and O(1) space
+class Solution:
+    def rob(self, houses: List[int]) -> int:
+        
+        
+        if not houses:
+            return 0
+        
+        if len(houses) == 1:
+            return houses[0]
+        
+        
+        return max(self.helper(houses))
+    
+    
+    
+    def helper(self, nums):
+        
+        prev = 0
+        current = 0
+        
+        for num in nums:
+            temp = prev
+            prev = current
+            current = max(current, num + prev)
+            
+        return current
+    
+    
+    
+    
+ ###### Logical way O(N) Time and Space ####
 
  class Solution:
     def rob(self, houses: List[int]) -> int:
@@ -100,30 +136,3 @@ class Solution:
             
             
         return profits[-1]
-  
-
-
-## More optimised
-
-# O(N) time and O(1) space
-class Solution:
-    def rob(self, houses: List[int]) -> int:
-        
-        if not houses:
-            return 0
-        
-        if len(houses) == 1:
-            return houses[0]
-        
-        prevMax = 0
-        currentMax = 0
-        
-        for i in range(len(houses)):
-            
-            temp = currentMax
-            currentMax = max(currentMax, prevMax + houses[i])
-            
-            prevMax = temp
-            
-            
-        return currentMax
