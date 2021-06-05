@@ -1,5 +1,11 @@
 # Brute Force - recursive choose no choose solution - O(T) is 2^N 2 choices at each node
 # [1,2,3,1] - max profit 4
+# In reccursive indeices -- 
+    # if unlimited/infinite dont choose and choose are index + 1 & index --> here base case will be index == len(arr)
+    # if use ONLY once -- dont choose & choose will be index + 1, index + 1 ---> here base case will be >= 
+    #. if alterate like here dont choose and choose will be ---> index + 1 & index + 2
+        # so here always make sure index >= is base case
+
 
 class Solution:
     def rob(self, houses: List[int]) -> int:
@@ -29,7 +35,7 @@ class Solution:
         # skip 2 indices and add to profit what you robbed
         rob = self.helper(nums, index + 2, profit + nums[index])
         
-        return max(no_rob, rob)
+        return max(no_rob, rob) # MAX as we want to maximise the gain
     
       
      
@@ -56,6 +62,7 @@ class Solution:
             
             # choose 
             # add this current value to previous dont robb choice, ie we skipped previous to add this current one
+            # FOR US TO CHOOSE AT THIS INDEX WE SHOULD HAVE SKIPPED PREV index --- so consider the dont choose case
             dp[i][1] = dp[i-1][0] + houses[i]
             
             
