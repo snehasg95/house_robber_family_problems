@@ -65,6 +65,9 @@ class Solution:
             # FOR US TO CHOOSE AT THIS INDEX WE SHOULD HAVE SKIPPED PREV index --- so consider the dont choose case
             dp[i][1] = dp[i-1][0] + houses[i]
             
+        return max(dp[rows-1][0], dp[rows-1][1])
+            
+            
             
   
 
